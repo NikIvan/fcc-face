@@ -1,9 +1,10 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+
+import App from './components/App.jsx';
+
 import './index.css';
 
-document.addEventListener('DOMContentLoaded', () => {
-  app().catch((err) => console.error(err));
-});
+const rootEl = document.getElementById('root');
 
-async function app() {
-  console.log(':)');
-}
+ReactDOM.render(<App />, rootEl);

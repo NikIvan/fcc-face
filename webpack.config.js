@@ -7,7 +7,7 @@ module.exports = {
   mode: 'development',
   output: {
     path: path.resolve(__dirname, './public'),
-    filename: 'index.js',
+    filename: '[name].js',
   },
   module: {
     rules: [
@@ -31,9 +31,32 @@ module.exports = {
           },
         ],
       },
+      {
+        test: /\.jsx?$/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: [
+              '@babel/preset-env', '@babel/preset-react'
+            ],
+          },
+        },
+      },
     ],
   },
   plugins: [
     new HtmlWebpackPlugin({template: './src/client/index.html'}),
   ],
+  optimization: {
+    splitChunks: {
+      cacheGroups: {
+        commons: {
+          test: /[\\/]node_modules[\\/]/,
+          name: 'vendors',
+          chunks: 'all',
+        },
+      },
+    },
+  },
 };
