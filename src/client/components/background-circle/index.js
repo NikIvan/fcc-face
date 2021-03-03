@@ -1,1 +1,1 @@
-export {default} from './BackgroundCircle.jsx';
+export { default } from './BackgroundCircle.jsx';
